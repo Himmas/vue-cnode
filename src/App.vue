@@ -1,23 +1,51 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+  	<div id="top">
+  		<a id="logo" href="/"><img id="logoimg" src="img/logo.png"/></a>
+		<form id="search" method="get" action="http://www.baidu.com/s">
+			<input type="text" name="wd" id="text1"  autocomplete="off" />			
+		</form>
+
+  	</div>
+    
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+	data(){
+		return {
+			
+		}
+	}
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+	*{
+	  padding:0px;
+	  margin:0px;
+	}
+	#top{
+		width: 100%;
+		height: 25px;
+		background-color: #444;
+	}
+	#logo{
+		margin-left: 40px;
+	}
+	#logoimg{
+		height: 100%;
+		width: 60px;
+	}
+	#search{
+		margin-top: -26px;
+		margin-left:105px;
+	}
+	#text1{
+		height: 10px;
+		width: 100px;
+	}
+	
+
 </style>
