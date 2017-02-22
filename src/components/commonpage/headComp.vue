@@ -1,33 +1,43 @@
 <template>
     <div >
-        <div id="top">
-            <div id="logo">
-                <router-link to="/"><img src="../../assets/cnodejs_light.svg"/></router-link>
-            </div>
-            
+      <div id="top">
+        <div id="logo">
+          <router-link to="/"><img src="../../assets/cnodejs_light.svg"/></router-link>
         </div>
-        <router-link to="/login">login</router-link>
+        <div id="search">
+          <form  method="get" action="http://www.baidu.com/s">
+            <input type="text" name="wd" autocomplete="off"/>
+          </form>
+        </div>
+      </div>
+      <router-link to="/login">login</router-link>
     </div>
 </template>
 <style lang="less">
-   
     #logo {
-        img {
-         width: 50%;
-         height：10%;
-        } 
+      img {
+        width:30%;
+      }
+    text-align:center;
+    }
+    #top {
+      width: 98%;
+      background-color: #555;
+      margin:0 auto;
+    }
+    #search {
+      text-align:center;
     }
 </style>
 <script>
+  export default{
+    data(){
+      return{
 
-    export default{
-        data(){
-            return{
+      }
+    },
+    components:{
 
-            }
-        },
-        components:{
-
-        }
     }
+  }
 </script>
