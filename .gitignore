@@ -5,3 +5,4 @@ npm-debug.log
 .idea/
 .project
 
+/yarn.lock
