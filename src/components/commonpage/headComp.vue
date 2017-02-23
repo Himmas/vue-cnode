@@ -10,7 +10,7 @@
                 </form>
             </div>
         </div>
-        <router-link to="/login">login</router-link>
+        <router-link to="/login">登陆</router-link>
     </div>
 </template>
 <style lang="less">
