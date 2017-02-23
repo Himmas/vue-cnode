@@ -42,6 +42,7 @@
     created(){
 
     },
+
     methods:{
 
     },
