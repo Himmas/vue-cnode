@@ -8,7 +8,7 @@
                 <form method="get" action="http://www.baidu.com/s">
                     <input type="text" name="wd" autocomplete="off"/>
                 </form>
-                111111
+                111
             </div>
         </div>
         <router-link to="/login">login</router-link>
