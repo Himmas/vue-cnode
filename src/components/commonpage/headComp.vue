@@ -22,7 +22,7 @@
     }
 
     #top {
-        width: 98%;
+        width: 100%;
         background-color: #555;
         margin: 0 auto;
     }
@@ -32,11 +32,19 @@
     }
 </style>
 <script>
+  import axios from 'axios'
   export default{
     data(){
       return{
 
       }
+    },
+    created(){
+
+    },
+
+    methods:{
+
     },
     components:{
 
