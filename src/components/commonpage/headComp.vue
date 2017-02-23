@@ -42,7 +42,6 @@
     created(){
 
     },
-
     methods:{
 
     },
