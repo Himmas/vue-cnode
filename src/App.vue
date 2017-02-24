@@ -1,9 +1,9 @@
 <template>
-	<div id="app">
-		<head-comp></head-comp>
-		<router-view></router-view>
-		<back-top></back-top>
-	</div>
+  <div id="app">
+    <head-comp></head-comp>
+    <router-view></router-view>
+    <back-top></back-top>
+  </div>
 </template>
 
 <script>
@@ -21,8 +21,12 @@
 		   backTop
 		}
 	}
+
+
+
+
 </script>
 
 <style lang="less">
-	@import url("./assets/css/m-reset.less");
+  @import url("./assets/css/m-reset.less");
 </style>

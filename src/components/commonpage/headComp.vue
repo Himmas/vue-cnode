@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div >
       <div class="top">
         <div class="logo">
@@ -34,6 +35,38 @@
     }
     .search {
       text-align:center;
+=======
+    <div>
+        <div id="top">
+            <div id="logo">
+                <router-link to="/"><img src="../../assets/cnodejs_light.svg"/></router-link>
+            </div>
+            <div id="search">
+                <form method="get" action="http://www.baidu.com/s">
+                    <input type="text" name="wd" autocomplete="off"/>
+                </form>
+            </div>
+        </div>
+        <router-link to="/login">登陆</router-link>
+    </div>
+</template>
+<style lang="less">
+    #logo {
+        img {
+            width: 30%;
+        }
+        text-align: center;
+    }
+
+    #top {
+        width: 100%;
+        background-color: #555;
+        margin: 0 auto;
+    }
+
+    #search {
+        text-align: center;
+>>>>>>> 35fbe2d5dcf43be66113e05a8664dad6f93b6d16
     }
     .search-input {
       border-radius: 15px;
@@ -61,14 +94,23 @@
     }
 </style>
 <script>
+  import axios from 'axios'
   export default{
     data(){
       return{
         items:["首页","新手入门","API","关于","注册","登录"],
       }
     },
+    created(){
+
+    },
+
+    methods:{
+
+    },
     components:{
 
     }
   }
+
 </script>
