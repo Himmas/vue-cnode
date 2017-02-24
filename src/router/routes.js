@@ -12,26 +12,26 @@ import shaerArticle from '../components/article/article-type/shareArticle.vue'
 import askArticle from '../components/article/article-type/askArticle.vue'
 
 const routes = [{
-    path: '/',
-    name: 'Home',
-    component: article,
-    children:[{
-        path:'',
-        component:newArticle
-    },{
-        path:'esse',
-        component:esseArticle
-    },{
-        path:'share',
-        component:shaerArticle
-    },{
-        path:'ask',
-        component:askArticle
-    }]
-},{
-    path: '/login',
-    name: 'login',
-    component: login
+  path: '/',
+  name: 'Home',
+  component: article,
+  children: [{
+    path: '',
+    component: newArticle
+  }, {
+    path: 'esse',
+    component: esseArticle
+  }, {
+    path: 'share',
+    component: shaerArticle
+  }, {
+    path: 'ask',
+    component: askArticle
+  }]
+}, {
+  path: '/login',
+  name: 'login',
+  component: login
 }]
 
 export default routes

@@ -1,19 +1,17 @@
 <template>
-	<div></div>
+  <div></div>
 </template>
 <style lang="less">
 
 </style>
 <script>
-	export default {
-		data() {
-			return {
-
-			}
-		},
-		components: {
-			articleList,
-			pageComp
-		}
-	}
+  export default {
+    data() {
+      return {}
+    },
+    components: {
+      articleList,
+      pageComp
+    }
+  }
 </script>

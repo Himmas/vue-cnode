@@ -1,19 +1,15 @@
 <template>
-    <div></div>
+  <div></div>
 </template>
 <style lang="less">
 
 </style>
 <script>
 
-    export default{
-        data(){
-            return{
-
-            }
-        },
-        components:{
-
-        }
-    }
+  export default{
+    data(){
+      return {}
+    },
+    components: {}
+  }
 </script>

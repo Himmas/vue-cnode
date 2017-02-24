@@ -7,22 +7,18 @@
 </template>
 
 <script>
-    import headComp from './components/commonpage/headComp'
-    import backTop from './components/commonpage/backTopComp'
+  import headComp from './components/commonpage/headComp'
+  import backTop from './components/commonpage/backTopComp'
 
-	export default {
-		data() {
-			return {
-
-			}
-		},
-		components:{
-		   headComp,
-		   backTop
-		}
-	}
-
-
+  export default {
+    data() {
+      return {}
+    },
+    components: {
+      headComp,
+      backTop
+    }
+  }
 
 
 </script>

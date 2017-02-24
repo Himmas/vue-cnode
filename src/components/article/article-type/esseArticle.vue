@@ -1,19 +1,15 @@
 <template>
-   <div>精华</div>
+  <div>精华</div>
 </template>
-<style style rel="stylesheet/less" lang="less">
-    
+<style lang="less">
+
 </style>
-<script type="text/ecmascript-6">
-    
-    export default{
-        data(){
-            return{
-               
-            }
-        },
-        components:{
-            
-        }
-    }
+<script>
+
+  export default{
+    data(){
+      return {}
+    },
+    components: {}
+  }
 </script>
