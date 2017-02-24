@@ -22,10 +22,12 @@
 </template>
 <style lang="less">
   .logo {
-    img {
+
+    img{
       width: 30%;
     }
-    text-align: center;
+  padding:10px 0;
+  text-align:center;
   }
 
   .top {
@@ -77,7 +79,13 @@
           name: '新手入门'
         }, {
           path: '/',
-          name: 'Api'
+          name: 'API'
+        }, {
+          path: '/',
+          name: '关于'
+        }, {
+          path: '/',
+          name: '注册'
         }, {
           path: '/login',
           name: '登录'
