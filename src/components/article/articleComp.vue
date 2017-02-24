@@ -11,7 +11,6 @@
 </style>
 <script>
   import tabBar from './tabBar'
-
   export default {
     data() {
       return {}
@@ -19,5 +18,6 @@
     components: {
       tabBar
     }
+
   }
 </script>

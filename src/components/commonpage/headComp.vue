@@ -30,7 +30,7 @@
   }
 
   .top {
-    width: 100%;
+    width: 98%;
     background-color: #444;
     margin: 0 auto;
   }
@@ -43,7 +43,6 @@
     border-radius: 15px;
     width: 60%;
     height: 25px;
-    background: red;
     background:url("../../assets/search.png") 2px 2px no-repeat #888;
     padding-left: 22px;
   }
