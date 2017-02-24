@@ -22,12 +22,11 @@
 </template>
 <style lang="less">
   .logo {
-
-    img{
+    img {
       width: 30%;
     }
-  padding:10px 0;
   text-align:center;
+  padding:10px 0;
   }
 
   .top {
@@ -44,7 +43,8 @@
     border-radius: 15px;
     width: 60%;
     height: 25px;
-    background: #888;
+    background: red;
+    background:url("../../assets/search.png") 2px 2px no-repeat #888;
     padding-left: 22px;
   }
 
