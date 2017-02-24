@@ -43,8 +43,6 @@
         width: 60%;
         height: 25px;
         background: #888;
-        background: url("../../assets/search.png") no-repeat left center;
-        background-size: 20px 20px;
         padding-left: 22px;
     }
 
