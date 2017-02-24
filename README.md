@@ -1,6 +1,6 @@
 # vue-cnode
 
-[Live demo]https://himmas.github.io/vue-cnode/
+[Live demo](https://himmas.github.io/vue-cnode/)
 
 ## Build Setup
 
