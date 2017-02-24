@@ -7,6 +7,7 @@
 </template>
 
 <script>
+
   import headComp from './components/commonpage/headComp'
   import backTop from './components/commonpage/backTopComp'
 
