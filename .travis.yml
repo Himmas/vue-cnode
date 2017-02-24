@@ -27,4 +27,4 @@ branches:
     - master
 env:
  global:
-   - GH_REF: git@github.com:Himmas/vue-cnode.git
+   - GH_REF: https://github.com/Himmas/vue-cnode.git
