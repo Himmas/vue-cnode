@@ -13,7 +13,7 @@
             <div class="leder">
                 <ul>
                     <li v-for="item in items" class="leder-li">
-                       <router-link :to='item.path' class="leder-a" tag="a">{{item.name}}</router-link>
+                       <router-link :to="item.path" class="leder-a" tag="a">{{item.name}}</router-link>
                      </li>
                 </ul>
             </div>
