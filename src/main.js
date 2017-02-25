@@ -4,6 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router/router.js'
 
+import axios from 'axios'
+Vue.prototype.$http = axios
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
