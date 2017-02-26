@@ -1,9 +1,11 @@
 <template>
   <div>
-    <router-link to="/">最新</router-link>
-    <router-link to="/esse">精华</router-link>
-    <router-link to="/share">分享</router-link>
-    <router-link to="/ask">问答</router-link>
+    <ul>
+      <li class="list" v-for="list in lists">
+        <router-link :to="list.tab">{{list.name}}</router-link>
+      </li>
+    </ul>
+
   </div>
 </template>
 <style lang="less">
@@ -13,7 +15,25 @@
 
   export default{
     data(){
-      return {}
+      return {
+        lists:[{
+          tab:"all",
+          name:"全部"
+          },
+          {
+          	tab:"esse",
+            name:"精华"
+          },
+          {
+            tab:"share",
+            name:"分享"
+          },
+          {
+            tab:"aks",
+            name:"问答"
+          },
+        ]
+      }
     },
     components: {}
   }

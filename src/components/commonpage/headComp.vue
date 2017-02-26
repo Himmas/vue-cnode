@@ -12,8 +12,8 @@
       </div>
       <div class="leder">
         <ul>
-          <li v-for="lede in ledes" class="leder-li">
-            <router-link :to="lede.path" class="leder-a" tag="a">{{lede.name}}</router-link>
+          <li v-for="nav in navs" class="leder-li">
+            <router-link :to="nav.path" class="leder-a" tag="a">{{nav.name}}</router-link>
           </li>
         </ul>
       </div>
@@ -70,7 +70,7 @@
   export default{
     data(){
       return {
-        ledes: [{
+        navs: [{
           path: '/',
           name: '首页'
         }, {
