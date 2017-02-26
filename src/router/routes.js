@@ -11,22 +11,15 @@ import esseArticle from '../components/article/article-type/esseArticle.vue'
 import shaerArticle from '../components/article/article-type/shareArticle.vue'
 import askArticle from '../components/article/article-type/askArticle.vue'
 
+import articleList from '../components/article/articleList.vue'
+
 const routes = [{
   path: '/',
   name: 'Home',
   component: article,
   children: [{
     path: '',
-    component: newArticle
-  }, {
-    path: 'esse',
-    component: esseArticle
-  }, {
-    path: 'share',
-    component: shaerArticle
-  }, {
-    path: 'ask',
-    component: askArticle
+    component: articleList
   }]
 }, {
   path: '/login',
