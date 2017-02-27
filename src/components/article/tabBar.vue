@@ -13,6 +13,7 @@
   .main{
     width: 98%;
     margin:0 auto;
+    margin-top: 12px;
   }
   .main-top{
      background-color:#f6f6f6;
