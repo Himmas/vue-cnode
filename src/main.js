@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router/router.js'
+//import store from './store'
 
 import axios from 'axios'
 axios.defaults.baseURL = 'https://cnodejs.org/api/v1'
@@ -14,6 +15,7 @@ Vue.prototype.$http = axios
 new Vue({
   el: '#app',
   router,
+  //store,
   template: '<App/>',
   components: {App}
 })

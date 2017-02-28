@@ -1,0 +1,2 @@
+export const CHANGE_TAB = 'CHANGE_TAB'
+export const GET_ARTICLEID = 'GET_ARTICLEID'
