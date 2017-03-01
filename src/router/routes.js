@@ -4,19 +4,18 @@
 
 //app.vue的router-view
 import article from '../components/article/articleComp'
-import login from '../components/login/login.vue'
-//子router-view
-import articleList from '../components/article/articleList.vue'
+import login from '../components/login/login'
+import articleDetail from '../components/article/articleDetail.vue'
 
 const routes = [{
   path: '/',
-  name: 'Home',
-  component: article,
-  children: [{
-    path: '',
-    component: articleList
-  }]
-}, {
+  component: article
+},{
+  path: '/topic/:id',
+  name:'topic',
+  component: articleDetail
+},
+  {
   path: '/login',
   name: 'login',
   component: login

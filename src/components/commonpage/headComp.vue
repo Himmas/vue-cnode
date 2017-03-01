@@ -21,69 +21,61 @@
   </div>
 </template>
 <style lang="less">
-  .logo {
-    img {
-      width: 30%;
-    }
-  text-align:center;
-  padding:10px 0;
-  }
-
-  .top {
-    width: 98%;
+  .top {//class="top"的样式
+    width:100%;
     background-color: #444;
     margin: 0 auto;
-  }
-
-  .search {
-    text-align: center;
-  }
-
-  .search-input {
-    border-radius: 15px;
-    width: 60%;
-    height: 25px;
-    background:url("../../assets/search.png") 2px 2px no-repeat #888;
-    padding-left: 22px;
-  }
-
-  .search-input:hover {
-    background-color: white;
-  }
-
-  .leder-a {
-    color: white;
-  }
-
-  .leder-li:hover {
-    opacity: 0.3;
-  }
-
-  .leder-li {
-    display: inline-block;
-    padding: 20px 3% 20px 3%;
-
+    text-align:center;
+    .logo {
+      img {
+          width: 30%;
+      }
+      padding:10px 0;
+    }
+    .search{
+      .search-input {
+        border-radius: 15px;
+        width: 60%;
+        height: 25px;
+        background:url("../../assets/search.png") 5px 3px no-repeat #888;
+        padding-left: 22px;
+        &:hover{
+          background-color: white;
+        }
+      }
+    }
+    .leder{
+      .leder-li {
+        display: inline-block;
+        padding: 20px 3% 20px 3%;
+        &:hover{
+          opacity: 0.3;
+        }
+        .leder-a {
+          color: white;
+        }
+      }
+    }
   }
 </style>
 <script>
-
-  export default{
+   export default{
     data(){
       return {
         navs: [{
           path: '/',
           name: '首页'
         }, {
-          path: '/',
+          path: '/login',
           name: '新手入门'
         }, {
-          path: '/',
+          path: '/login',
           name: 'API'
         }, {
-          path: '/',
+          path: '/login',
           name: '关于'
         }, {
-          path: '/',
+          path: '/login',
           name: '注册'
         }, {
           path: '/login',

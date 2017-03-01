@@ -2,66 +2,58 @@
   <div class="main">
     <div class="main-top">
       <ul>
-        <li class="list" v-for="(list ,index) in lists" :class="{active:isactive==index}"  @click="actived(index)">
-          <router-link :to="list.tab">{{list.name}}</router-link>
-        </li>
+         <router-link class="list" :to="{path:'/',query:{tab:list.tab}}"
+                      v-for="(list,index) in lists"
+                      active-class="active"
+                      tag="li"
+                      exact>
+            <span>{{list.name}}</span>
+         </router-link>
       </ul>
     </div>
   </div>
 </template>
-<style lang="less">
-  .main{
-    width: 98%;
-    margin:0 auto;
-    margin-top: 12px;
-  }
-  .main-top{
-     background-color:#f6f6f6;
-   }
-  .active {
-    background-color:#80bd01;
-  }
-  .list{
-    display: inline-block;
-    padding: 10px 5%;
-    font-size: 15px;
-  }
-  .list a{
-    color:#80bd01
-  }
-  .active a{
-    color:white;
-  }
-</style>
 <script>
 
   export default{
     data(){
       return {
-      	isactive:null,
         lists:[{
-          tab:"?tab=all",
+          tab:"all",
           name:"全部",
           },
           {
-          	tab:"?tab=esse",
+          	tab:"good",
             name:"精华",
           },
           {
-            tab:"?tab=share",
+            tab:"share",
             name:"分享",
           },
           {
-            tab:"?tab=ask",
+            tab:"ask",
             name:"问答",
           }
         ]
       }
-    },
-    methods:{
-      actived(index){
-      	this.isactive =index
-      }
     }
   }
 </script>
+<style lang="less" scoped>
+  .main{
+    width: 100%;
+    margin:15px auto 0 auto;
+    .main-top{
+      background-color:#f6f6f6;
+      .list{
+        display: inline-block;
+        padding: 10px 5%;
+        font-size: 15px;
+        &.active{
+          background-color:#80bd01;
+        }
+      }
+    }
+  }
+</style>
+
