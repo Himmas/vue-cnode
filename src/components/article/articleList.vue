@@ -1,5 +1,5 @@
 <template>
-    <div class="article">
+    <div id="articleList" class="article">
         <ul class="article-list">
             <li v-for="list in articles" class="art-li">
                 <div class="user-avata">
@@ -71,31 +71,47 @@
   export default{
     data(){
       return {
-        isListShow:false,
+        isListShow:true,
+        limit:40,
       	articles:[]
       }
     },
     created(){
       this.getArticleList()
+      this.getBottom()
     },
     methods:{
        getArticleList(){
           var _this = this
-          var url = !_this.$route.query.tab?'/topics?page=1&limit=20':'/topics?page=1&limit=20&tab='+_this.$route.query.tab
+          var url = !_this.$route.query.tab?'/topics?limit='+_this.limit:'/topics?limit='+_this.limit+'&tab='+_this.$route.query.tab
           _this.$http.get(url)
           .then((res)=>{
-             _this.$set(_this.$data,'articles',res.data.data)
-             _this.isListShow = false
+            _this.$set(_this.$data,'articles',res.data.data)
+            _this.isListShow = false
           })
           .catch((error)=>{
              console.log(error)
           })
+       },
+       getBottom(){
+          var _this = this
+          window.onscroll = function(){
+             var scrollTop = document.body.scrollTop
+             var scrollHeight = document.documentElement.scrollHeight
+             var clientHeight = document.documentElement.clientHeight
+             if(scrollTop  == scrollHeight - clientHeight){
+                _this.isListShow = true
+                _this.limit += 40
+                _this.getArticleList()
+             }
+          }
        }
     },
     watch: {
         '$route' (to, from) {
           // 对路由变化作出响应...
             this.isListShow = true
+            this.limit = 40
             this.getArticleList()
         }
     },

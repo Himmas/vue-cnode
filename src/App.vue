@@ -5,15 +5,13 @@
         <router-view class="router-view"></router-view>
     </transition>
     <back-top></back-top>
+    <load-comp :loadShow="isAppShow"></load-comp>
   </div>
 </template>
-
 <script>
-
   import headComp from './components/commonpage/headComp'
   import backTop from './components/commonpage/backTopComp'
   import loadComp from './components/commonpage/loading'
-
 
   export default {
     data() {
@@ -38,7 +36,7 @@
 <style lang="less">
   @import url("./assets/css/m-reset.less");
   .router-view {
-    margin-top: 179px;
+    margin-top: 137px;
     background: #fff;
     width: 100%;
     height: auto;
@@ -49,6 +47,7 @@
   }
   .fade-left-enter,
   .fade-left-leave-active{
-    transform: translate(100%);
+    opacity: 0;
+    transform: scale(.5);
   }
 </style>
