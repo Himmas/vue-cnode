@@ -17,5 +17,10 @@ new Vue({
   router,
   //store,
   template: '<App/>',
+  created(){
+    this.$nextTick(()=>{
+
+    })
+  },
   components: {App}
 })

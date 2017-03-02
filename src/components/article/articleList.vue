@@ -15,6 +15,7 @@
                 <div class="article-time">3分钟前</div>
             </li>
         </ul>
+        <load-comp :loadShow="isListShow"></load-comp>
     </div>
 </template>
 <style lang="less" scoped>
@@ -24,9 +25,8 @@
         .article-list{
             width: 100%;
             height: auto;
-            padding: 10px;
+            padding: 0 10px;
             box-sizing: border-box;
-            background: #fff;
             .art-li{
                 display: flex;
                 width: 100%;
@@ -66,10 +66,12 @@
     }
 </style>
 <script>
+  import loadComp from '../commonpage/loading'
 
   export default{
     data(){
       return {
+        isListShow:false,
       	articles:[]
       }
     },
@@ -80,10 +82,10 @@
        getArticleList(){
           var _this = this
           var url = !_this.$route.query.tab?'/topics?page=1&limit=20':'/topics?page=1&limit=20&tab='+_this.$route.query.tab
-          console.log(url)
           _this.$http.get(url)
           .then((res)=>{
              _this.$set(_this.$data,'articles',res.data.data)
+             _this.isListShow = false
           })
           .catch((error)=>{
              console.log(error)
@@ -91,12 +93,15 @@
        }
     },
     watch: {
-    '$route' (to, from) {
-      // 对路由变化作出响应...
-       this.getArticleList()
+        '$route' (to, from) {
+          // 对路由变化作出响应...
+            this.isListShow = true
+            this.getArticleList()
+        }
+    },
+    components: {
+        loadComp
     }
-  },
-    components: {}
   }
 
 </script>

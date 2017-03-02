@@ -8,17 +8,56 @@
 html {
     -webkit-text-size-adjust: 100%;
     //font-size: 62.5%;10px
-    font-size: 625%;//100px
+    font-size: 625%; //100px
 }
-@media screen and (max-width: 319px) { html { font-size: 80px; } }
-@media screen and (min-width: 320px) and (max-width: 359px) { html { font-size: 80px; } }
-@media screen and (min-width: 360px) and (max-width: 399px){ html { font-size: 100px; } }
-@media screen and (min-width: 400px) and (max-width: 413px){ html { font-size: 100px; } }
-@media screen and (min-width: 414px) and (max-width: 639px){ html { font-size: 100px; } }
-@media screen and (min-width: 640px) and (max-width: 1079px){ html { font-size: 150px; } }
-@media screen and (min-height: 1800px){ html { font-size: 280px; } }
-@media screen and (min-width: 1080px){ html { font-size: 280px; } }
 
+@media screen and (max-width: 319px) {
+    html {
+        font-size: 80px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 359px) {
+    html {
+        font-size: 80px;
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width: 399px) {
+    html {
+        font-size: 100px;
+    }
+}
+
+@media screen and (min-width: 400px) and (max-width: 413px) {
+    html {
+        font-size: 100px;
+    }
+}
+
+@media screen and (min-width: 414px) and (max-width: 639px) {
+    html {
+        font-size: 100px;
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 1079px) {
+    html {
+        font-size: 150px;
+    }
+}
+
+@media screen and (min-height: 1800px) {
+    html {
+        font-size: 280px;
+    }
+}
+
+@media screen and (min-width: 1080px) {
+    html {
+        font-size: 280px;
+    }
+}
 
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td, hr {
     margin: 0;
@@ -63,7 +102,7 @@ a {
     color: #333;
     background: transparent;
     text-decoration: none;
-    -webkit-tap-highlight-color: transparent;//��ֹ�������ְ�ɫ����
+    -webkit-tap-highlight-color: transparent; //��ֹ�������ְ�ɫ����
 }
 
 a:active {
@@ -184,15 +223,16 @@ legend {
     padding: 0;
 }
 
-input{
+input {
     outline: none;
     border: none;
 }
+
 textarea {
     overflow: auto;
     resize: vertical;
     border: none;
-    resize: none;//禁止拖动
+    resize: none; //禁止拖动
     outline: none;
 }
 
@@ -233,3 +273,33 @@ h3 {
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     color: #ccc;
 }
+
+@font-face {
+    font-family: "iconfont";
+    src: url('../fonts/iconfont.eot?t=1488419747715'); /* IE9*/
+    src: url('../fonts/iconfont.eot?t=1488419747715#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/iconfont.woff?t=1488419747715') format('woff'), /* chrome, firefox */
+         url('../fonts/iconfont.ttf?t=1488419747715') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+         url('../fonts/iconfont.svg?t=1488419747715#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-iconup:before {
+    content: "\e601";
+}
+
+.icon-shuaxin1:before {
+    content: "\e64f";
+}
+
+.icon-plus-copy:before {
+    content: "\e647";
+}
+

@@ -1,65 +1,99 @@
 <template>
-	<div>
-	  <div class="tip-menu">
-	  	<div class="tip-nav" @click="openTip" v-bind:class="{ active: isActive }">
-	  		<img src="../../assets/tip.svg"/>
-	  	</div>
-	  	<transition name="list-backTop">
-	  		<span v-if="show" class="tips-backTop">
-		    	<img src="../../assets/backTop.svg" alt="">
-	  		</span>
-		  </transition>
-		  <transition name="list-refresh">
-				<span v-if="show" class="tips-refresh" @click="refresh">
-		    	<img src="../../assets/refresh.svg" alt="">
-	  		</span>
-	  	</transition>
-	  </div>
-  </div>	
+	<div class="tip">
+		<div class="tip-btn" @click="showD($event)">
+			<span class="iconfont icon-plus-copy"></span>
+		</div>
+		<transition name="tip-move">
+			<div v-show="isShow" class="tip-menu">
+				<div class="inner inner-up">
+					<span class="iconfont icon-iconup"></span>
+				</div>
+				<div class="inner inner-reload">
+					<span class="iconfont icon-shuaxin1"></span>
+				</div>
+			</div>
+		</transition>
+	</div>
 </template>
 <style lang="less" scoped>
-	.tip-menu {
+	.tip{
 		position: fixed;
-		bottom: 40px;
-		right: 10px;
-		width: 40px;
-		height: 40px;
-		text-align: center;
-		line-height: 40px;
-		font-size: 40px;
+		right:10px;
+		bottom: 30px;
+		width: 45px;
+		height: 45px;
 		border-radius: 50%;
-		border: 1px solid #80bd01;
-		background: #FFF;
-		color: #80bd01;
-		img {
+		z-index: 10;
+		.tip-btn{
 			width: 100%;
+			height:100%;
+			border-radius: 50%;
+			background: rgba(0,0,0,.4);
+			span.iconfont{
+				display: block;
+				width: 100%;
+				height: 100%;
+				pointer-events: none;
+				text-align: center;
+				line-height: 45px;
+				color: #ffffff;
+				transition: all .3s ease-in-out;
+			}
+			&.open{
+				span{
+					transform: rotateZ(45deg);
+				}
+			}
 		}
-		p {
-			display: block;
-			width: 100%;
-			height: 100%;
-		}
-		.tips-backTop, .tips-refresh {
-			position: absolute;
+		.tip-menu{
 			width: 40px;
 			height: 40px;
-		}
-		.tip-nav {
-			height: 40px;
-			transition: all .5s;
-			transform-origin: center center; 	
-		}
-		.active {
-			transform: rotateZ(45deg);
-			background: none;
-		}
-		.tips-backTop {
-			left: 0;
-			top: -45px;
-		}
-		.tips-refresh {
-			left: -45px;
-			top: -35px;
+			border-radius: 50%;
+			transition: all .4s ease-in-out;
+			.inner{
+				position: absolute;
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				background: rgba(0,0,0,.4);
+				text-align: center;
+				line-height: 30px;
+				color: #ffffff;
+				transition: all .4s ease-in-out;
+				&.inner-up{
+					right: 7.5px;
+					bottom: 55px;
+				}
+				&.inner-reload{
+					right: 55px;
+					bottom: 7.5px;
+				}
+			}
+			&.tip-move-enter-active{
+				.inner{
+					transition-timing-function: cubic-bezier(0, .57, .44, 1.97);
+					&.inner-up{
+						transition-delay: 0s;
+					}
+					&.inner-reload{
+						transition-delay: .1s;
+					}
+				}
+			}
+			&.tip-move-enter,
+			&.tip-move-leave-active{
+				.inner{
+					transition-timing-function: ease-in-out;
+					&.inner-up{
+						transform: translate3d(0,50px,0);
+						transition-delay: .1s;
+					}
+					&.inner-reload{
+						transform: translate3d(50px,0,0);
+						transition-delay: 0;
+					}
+				}
+			}
 		}
 	}
 </style>
@@ -67,27 +101,17 @@
   export default{
     data(){
       return {
-      	show: false,
-      	isActive: false,
+      	isShow: false
       }
+    },
+    methods:{
+    	showD(event){
+    		this.isShow = !this.isShow
+    		event.target.classList.toggle('open')
+    	}
     },
     components: {
 
-    },
-    methods: {
-    	openTip: function () {
-    		this.show = !this.show;
-    		this.isActive = !this.isActive;
-    	},
-    	refresh: function () {
-    		this.$http.get('/topics')
-			  .then(function (response) {
-			    console.log(response);
-			  })
-			  .catch(function (error) {
-			    console.log(error);
-			  });
-			}
     }
   }
 </script>

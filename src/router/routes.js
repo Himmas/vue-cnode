@@ -3,22 +3,34 @@
  */
 
 //app.vue的router-view
-import article from '../components/article/articleComp'
-import login from '../components/login/login'
-import articleDetail from '../components/article/articleDetail.vue'
+//import article from '../components/article/articleComp'
+//import login from '../components/login/login'
+//import articleDetail from '../components/article/articleDetail.vue'
 
 const routes = [{
-  path: '/',
-  component: article
+    path: '/',
+    component: function(resolve){
+      require(['../components/article/articleComp'],resolve)
+    },
+    children:[{
+      path:'',
+      component:function (resolve) {
+        require(['../components/article/articleList'],resolve)
+      }
+  }]
 },{
   path: '/topic/:id',
   name:'topic',
-  component: articleDetail
+  component: function(resolve){
+    require(['../components/article/articleDetail.vue'],resolve)
+  }
 },
   {
   path: '/login',
   name: 'login',
-  component: login
+  component: function(resolve){
+    require(['../components/login/login'],resolve)
+  }
 }]
 
 export default routes

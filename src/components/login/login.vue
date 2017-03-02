@@ -1,10 +1,12 @@
 <template>
-  <div>
+  <div class="login">
     登录
   </div>
 </template>
-<style lang="less">
-
+<style lang="less" scoped>
+    .login{
+          margin-top: 150px;
+    }
 </style>
 <script>
 
