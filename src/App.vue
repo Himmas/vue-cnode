@@ -4,13 +4,13 @@
     <transition name="fade-left">
         <router-view class="router-view"></router-view>
     </transition>
-    <back-top></back-top>
+    <menu-btn></menu-btn>
     <load-comp :loadShow="isAppShow"></load-comp>
   </div>
 </template>
 <script>
   import headComp from './components/commonpage/headComp'
-  import backTop from './components/commonpage/backTopComp'
+  import menuBtn from './components/commonpage/menuBtn'
   import loadComp from './components/commonpage/loading'
 
   export default {
@@ -27,7 +27,7 @@
     },
     components: {
       headComp,
-      backTop,
+      menuBtn,
       loadComp
     }
   }
