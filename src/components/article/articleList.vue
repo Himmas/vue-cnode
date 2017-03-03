@@ -12,7 +12,7 @@
                     <span class="title-content">{{article.title}}</span>
                     <span class="title-num">{{article.reply_count}}/{{article.visit_count}}</span>
                 </router-link>
-                <div class="article-time">{{article.last_reply_at}}</div>
+                <div class="article-time">{{article.last_reply_at | filtersTime(article.last_reply_at)}}</div>
             </li>
         </ul>
     </div>
@@ -89,6 +89,25 @@
              console.log(error)
           })
        }
+    },
+    filters:{
+    	filtersTime(time){
+    		var nowTime=new Date;
+//  		console.log('nowTime',nowTime,'time',time);
+    		if(Date.parse(time)<nowTime){
+    			var newTime= ((nowTime-Date.parse(time))/1000)/3600;
+    			if(newTime*60<1){
+    				return Math.round(newTime*3600)+'秒前';
+    			}else if(newTime<1){
+    				return Math.floor(newTime*60)+'分前';
+    			}else if(newTime>1&&newTime<24){
+    				return Math.floor(newTime)+'小时前';
+    			}else if(newTime>24){
+    				return Math.floor(newTime/24)+'天'+Math.floor(newTime%24)+'小时前';
+    			}
+    		}
+//  		return newTime*60;
+    	}
     },
     watch: {
     '$route' (to, from) {
