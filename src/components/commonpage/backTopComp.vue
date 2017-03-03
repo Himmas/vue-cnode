@@ -62,6 +62,26 @@
 			top: -35px;
 		}
 	}
+	.list-backTop-enter-active {
+	  transition: all .2s ease;
+	}
+	.list-backTop-leave-active {
+	  transition: all 1s ease;
+	}
+	.list-backTop-enter, .list-backTop-leave-active {
+	  transform: translateY(10px);
+	  opacity: 0;
+	}
+	.list-refresh-enter-active {
+	  transition: all 1s ease;
+	}
+	.list-refresh-leave-active {
+	  transition: all .2s ease;
+	}
+	.list-refresh-enter, .list-refresh-leave-active {
+	  transform: translateY(10px) translateX(10px);
+	  opacity: 0;
+	}
 </style>
 <script>
   export default{
