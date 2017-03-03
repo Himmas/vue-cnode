@@ -102,8 +102,10 @@
     				return Math.floor(newTime*60)+'分前';
     			}else if(newTime>1&&newTime<24){
     				return Math.floor(newTime)+'小时前';
-    			}else if(newTime>24){
-    				return Math.floor(newTime/24)+'天'+Math.floor(newTime%24)+'小时前';
+    			}else if(newTime>24&&newTime/24<30){
+    				return Math.floor(newTime/24)+'天前'
+    			}else if(newTime/24>30){
+    				return Math.floor(newTime/24)+'月前';
     			}
     		}
 //  		return newTime*60;
