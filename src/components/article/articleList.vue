@@ -1,18 +1,18 @@
 <template>
     <div class="article">
         <ul class="article-list">
-            <li v-for="list in articles" class="art-li">
+            <li v-for="article in articles" class="art-li">
                 <div class="user-avata">
-                    <img :src="list.author.avatar_url" class="headpic"/>
+                    <img :src="article.author.avatar_url" class="headpic"/>
                 </div>
-                <div class="article-tab">{{list.tab}}</div>
-                <router-link :to="{name:'topic',params:{id:list.id}}"
+                <div class="article-tab">{{article.tab}}</div>
+                <router-link :to="{name:'topic',params:{id:article.id}}"
                              class="article-title"
                              tag="div">
-                    <span class="title-content">{{list.title}}</span>
-                    <span class="title-num">25/233</span>
+                    <span class="title-content">{{article.title}}</span>
+                    <span class="title-num">{{article.reply_count}}/{{article.visit_count}}</span>
                 </router-link>
-                <div class="article-time">3分钟前</div>
+                <div class="article-time">{{article.last_reply_at}}</div>
             </li>
         </ul>
     </div>
