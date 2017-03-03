@@ -5,7 +5,7 @@
 		</div>
 		<transition name="tip-move">
 			<div v-show="isShow" class="tip-menu">
-				<div class="inner inner-up">
+				<div class="inner inner-up" @click="backUP">
 					<span class="iconfont icon-iconup"></span>
 				</div>
 				<div class="inner inner-reload">
@@ -68,6 +68,9 @@
 					right: 55px;
 					bottom: 7.5px;
 				}
+				span{
+					pointer-events: none;
+				}
 			}
 			&.tip-move-enter-active{
 				.inner{
@@ -108,6 +111,9 @@
     	showD(event){
     		this.isShow = !this.isShow
     		event.target.classList.toggle('open')
+    	},
+    	backUP(){
+    	  document.body.scrollTop = 0
     	}
     },
     components: {

@@ -22,8 +22,9 @@
         position: fixed;
         top: 0px;
         width: 100%;
+        height: 20%;
+        overflow: hidden;
         background-color: #444;
-        margin: 0 auto;
         text-align: center;
         z-index:100;
         .logo {

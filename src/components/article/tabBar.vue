@@ -1,14 +1,14 @@
 <template>
     <div class="tab-bar">
         <ul>
-            <router-link class="list" :to="{path:'',query:{tab:list.tab}}"
-                         v-for="(list,index) in lists"
+            <router-link class="list" :to="{path:'',query:{tab:tabbar.tab}}"
+                         v-for="(tabbar,index) in tabbars"
                          :key="index"
                          active-class="active"
                          tag="li"
                          exact
             >
-                <span>{{list.name}}</span>
+                <span>{{tabbar.name}}</span>
             </router-link>
         </ul>
     </div>
@@ -18,7 +18,7 @@
   export default{
     data(){
       return {
-        lists:[{
+        tabbars:[{
           tab:"all",
           name:"全部",
           },

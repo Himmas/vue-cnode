@@ -1,11 +1,19 @@
 <template>
   <div>
-    <div v-html="articleDetail"></div>
+    <div class="article-detail">
+      <div v-html="articleDetail"></div>
+    </div>
     <load-comp :loadShow="isDhow"></load-comp>
   </div>
 </template>
 <style lang="less">
-
+    .article-detail{
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+      padding: 5px 10px;
+      box-sizing: border-box;
+    }
 </style>
 <script>
   import loadComp from '../commonpage/loading'

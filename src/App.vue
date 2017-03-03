@@ -36,10 +36,12 @@
 <style lang="less">
   @import url("./assets/css/m-reset.less");
   .router-view {
-    margin-top: 137px;
+    position: absolute;
+    top: 20%;
+    height: 80%;
     background: #fff;
     width: 100%;
-    height: auto;
+    overflow:hidden;
   }
   .fade-left-enter-active,
   .fade-left-leave-active{

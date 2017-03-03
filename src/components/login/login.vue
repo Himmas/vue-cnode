@@ -5,7 +5,7 @@
 </template>
 <style lang="less" scoped>
     .login{
-          margin-top: 150px;
+
     }
 </style>
 <script>
