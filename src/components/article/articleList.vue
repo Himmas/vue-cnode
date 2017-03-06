@@ -1,5 +1,5 @@
 <template>
-    <div class="article"  @scroll="getBottom($event)">
+    <div ref="articleRef" class="article"  @scroll="getBottom($event)">
         <ul class="article-list">
             <li v-for="(article,index) in articles" class="art-li">
                 <!--第一行-->
@@ -36,9 +36,138 @@
                 </div>
             </li>
         </ul>
+        <back-top :isBackTopShow="backTopShow" @backTop="articleTop"></back-top>
+        <reload-page :isReloadShow="reloadShow" @reloadPage="reloadArticle"></reload-page>
         <load-comp :loadShow="isListShow"></load-comp>
     </div>
 </template>
+<script>
+  import loadComp from '../commonpage/loading'
+  import reloadPage from '../commonpage/reloadPage'
+  import backTop from '../commonpage/backTop'
+
+  export default{
+    data(){
+      return {
+        isListShow:true,
+        limit:40,
+      	articles:[],
+      	reloadShow: true,
+      	backTopShow: false,
+      	timer:null
+      }
+    },
+    created(){
+      this.getArticleList()
+    },
+    filters:{
+        getTabName:(value,isTop,isGood)=>{
+            var tabName = {
+                'top'   : '置顶',
+                'good'  : '精华',
+                'share' : '分享',
+                'ask'   : '问答',
+                'job'   : '招聘'
+            }
+            if(isTop){
+                return tabName["top"]
+            }else if(isGood){
+                return tabName["good"]
+            }else{
+                return tabName[value]
+            }
+        },
+        getTime(time){
+          var localTime = new Date().getTime()
+          var createTime = new Date(time).getTime()
+          var totalTime = (localTime - createTime) / 1000
+          var day = parseInt(totalTime/(24*60*60))
+          var month = parseInt(day/30)
+          var year = parseInt(day/364)
+          var hour = parseInt((totalTime - day*24*60*60)/(60*60))
+          var minute = parseInt((totalTime - day*24*60*60 - hour*60*60)/60)
+          if(day){
+             if(year){
+                return `${yaer}年前`
+            }else if(month){
+                return `${month}月前`
+            }else{
+                return `${day}天前`
+            }
+          }else if(hour){
+            return `${hour}小时前`
+          }else{
+            return `${minute}分钟前`
+          }
+        }
+    },
+    methods:{
+       reloadArticle(){
+          this.isListShow = true
+          this.limit = 40
+          this.articleTop()
+          this.getArticleList()
+       },
+       articleTop(){
+          //设置一个定时器
+          this.timer = setInterval(() => {
+            //获取滚动条的滚动高度
+            var osTop = this.$refs.articleRef.scrollTop
+            //用于设置速度差，产生缓动的效果
+            var speed = Math.floor(-osTop / 6)
+            this.$refs.articleRef.scrollTop = osTop + speed
+            this.isTop = true;  //用于阻止滚动事件清除定时器
+            if(osTop == 0){
+                this.backTopShow = false
+                clearInterval(this.timer)
+            }
+        },25)
+       },
+       getArticleList(){
+          var url = !this.$route.query.tab?`/topics?limit=${this.limit}`:`/topics?limit=${this.limit}&tab=${this.$route.query.tab}`
+          this.$http.get(url)
+          .then((res)=>{
+            this.$set(this.$data,'articles',res.data.data)
+            this.isListShow = false
+          })
+          .catch((error)=>{
+             console.log(error)
+          })
+       },
+       getBottom(event){
+         var scrollTop = event.target.scrollTop
+         var scrollHeight = event.target.scrollHeight
+         var clientHeight = event.target.clientHeight
+         if(scrollTop > 100){
+            this.backTopShow = true
+         }else{
+            this.backTopShow = false
+         }
+         if(scrollHeight - clientHeight == scrollTop){
+            this.limit += 40
+            this.isListShow = true
+            this.getArticleList()
+         }
+       }
+    },
+    watch: {
+        '$route' (to, from) {
+          // 对路由变化作出响应...
+            this.reloadShow = false
+            this.isListShow = true
+            //this.limit = 40
+            this.getArticleList()
+        }
+    },
+    components: {
+        loadComp,
+        reloadPage,
+        backTop
+    }
+  }
+
+</script>
+
 <style lang="less" scoped>
     .article{
         width: 100%;
@@ -143,87 +272,3 @@
         }
     }
 </style>
-<script>
-  import loadComp from '../commonpage/loading'
-
-  export default{
-    data(){
-      return {
-        isListShow:true,
-        limit:40,
-      	articles:[]
-      }
-    },
-    created(){
-      this.getArticleList()
-    },
-    filters:{
-        getTabName:(value,isTop,isGood)=>{
-            var tabName = {
-                'top'   : '置顶',
-                'good'  : '精华',
-                'share' : '分享',
-                'ask'   : '问答',
-                'job'   : '招聘'
-            }
-            if(isTop){
-                return tabName["top"]
-            }else if(isGood){
-                return tabName["good"]
-            }else{
-                return tabName[value]
-            }
-        },
-        getTime(time){
-          var localTime = new Date().getTime()
-          var createTime = new Date(time).getTime()
-          var totalTime = (localTime - createTime) / 1000
-          var day = parseInt(totalTime/(24*60*60))
-          var hour = parseInt((totalTime - day*24*60*60)/(60*60))
-          var minute = parseInt((totalTime - day*24*60*60 - hour*60*60)/60)
-          if(day){
-            return `${day}天前`
-          }else if(hour){
-            return `${hour}小时前`
-          }else{
-            return `${minute}分钟前`
-          }
-        }
-    },
-    methods:{
-       getArticleList(){
-          var url = !this.$route.query.tab?`/topics?limit=${this.limit}`:`/topics?limit=${this.limit}&tab=${this.$route.query.tab}`
-          this.$http.get(url)
-          .then((res)=>{
-            this.$set(this.$data,'articles',res.data.data)
-            this.isListShow = false
-          })
-          .catch((error)=>{
-             console.log(error)
-          })
-       },
-       getBottom(event){
-         var scrollTop = event.target.scrollTop
-         var scrollHeight = event.target.scrollHeight
-         var clientHeight = event.target.clientHeight
-         if(scrollHeight - clientHeight == scrollTop){
-            this.limit += 40
-            this.isListShow = true
-            this.getArticleList()
-         }
-       }
-    },
-    watch: {
-        '$route' (to, from) {
-          // 对路由变化作出响应...
-            this.isListShow = true
-            this.limit = 40
-            this.getArticleList()
-        }
-    },
-    components: {
-        loadComp
-    }
-  }
-
-</script>

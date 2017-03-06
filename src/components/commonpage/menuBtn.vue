@@ -5,7 +5,7 @@
 		</div>
 		<transition name="tip-move">
 			<div v-show="isShow" class="tip-menu">
-				<div class="inner inner-up" @click="backUP">
+				<div class="inner inner-up">
 					<span class="iconfont icon-iconup"></span>
 				</div>
 				<div class="inner inner-reload">
@@ -101,6 +101,9 @@
 	}
 </style>
 <script>
+  import backTop from './backTop'
+  import reloadPage from './reloadPage'
+
   export default{
     data(){
       return {
@@ -111,13 +114,11 @@
     	showD(event){
     		this.isShow = !this.isShow
     		event.target.classList.toggle('open')
-    	},
-    	backUP(){
-    	  document.body.scrollTop = 0
     	}
     },
     components: {
-
+		backTop,
+		reloadPage
     }
   }
 </script>

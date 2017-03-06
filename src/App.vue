@@ -4,7 +4,6 @@
     <transition name="fade-left">
         <router-view class="router-view"></router-view>
     </transition>
-    <menu-btn></menu-btn>
     <load-comp :loadShow="isAppShow"></load-comp>
   </div>
 </template>
