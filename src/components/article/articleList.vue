@@ -88,7 +88,7 @@
           var minute = parseInt((totalTime - day*24*60*60 - hour*60*60)/60)
           if(day){
              if(year){
-                return `${yaer}年前`
+                return `${year}年前`
             }else if(month){
                 return `${month}月前`
             }else{
