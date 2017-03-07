@@ -60,47 +60,6 @@
     created(){
       this.getArticleList()
     },
-    filters:{
-        getTabName:(value,isTop,isGood)=>{
-            var tabName = {
-                'top'   : '置顶',
-                'good'  : '精华',
-                'share' : '分享',
-                'ask'   : '问答',
-                'job'   : '招聘'
-            }
-            if(isTop){
-                return tabName["top"]
-            }else if(isGood){
-                return tabName["good"]
-            }else{
-                return tabName[value]
-            }
-        },
-        getTime(time){
-          var localTime = new Date().getTime()
-          var createTime = new Date(time).getTime()
-          var totalTime = (localTime - createTime) / 1000
-          var day = parseInt(totalTime/(24*60*60))
-          var month = parseInt(day/30)
-          var year = parseInt(day/364)
-          var hour = parseInt((totalTime - day*24*60*60)/(60*60))
-          var minute = parseInt((totalTime - day*24*60*60 - hour*60*60)/60)
-          if(day){
-             if(year){
-                return `${year}年前`
-            }else if(month){
-                return `${month}月前`
-            }else{
-                return `${day}天前`
-            }
-          }else if(hour){
-            return `${hour}小时前`
-          }else{
-            return `${minute}分钟前`
-          }
-        }
-    },
     methods:{
        reloadArticle(){
           this.isListShow = true
