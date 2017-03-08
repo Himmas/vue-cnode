@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "test":"npm run build"
+    "test": "npm run build"
   },
   "dependencies": {
     "axios": "^0.15.3",

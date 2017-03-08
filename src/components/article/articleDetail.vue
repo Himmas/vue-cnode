@@ -4,7 +4,7 @@
         <div class="article-title">
             <div class="header">
                 <span class="author">作者 {{author.loginname}}</span>
-                <span class="origin">来自：{{topics.tab | getTabName(null,null)}}</span>
+                <span class="origin">来自：{{topics.tab | getTabName}}</span>
             </div>
             <div class="title">
                 <span v-show="topics.top || topics.good">{{topics.tab | getTabName(topics.top,topics.good)}}</span>

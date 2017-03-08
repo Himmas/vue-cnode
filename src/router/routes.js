@@ -22,7 +22,21 @@ const routes = [{
   path: '/topic/:id',
   name:'topic',
   component: function(resolve){
-    require(['../components/article/articleDetail.vue'],resolve)
+    require(['../components/article/topicComp.vue'],resolve)
+  },
+  meta:{
+    requiresAuth: true
+  },
+  beforeEnter: (to, from, next) => {
+    if (to.matched.some(res=>res.meta.requiresAuth) && to.params.id == 'create') {
+      if (localStorage.getItem('login')) {
+        next({
+          path: '/login'
+        })
+      } else {
+        next()
+      }
+    }
   }
 },
   {

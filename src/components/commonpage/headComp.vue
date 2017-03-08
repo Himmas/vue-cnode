@@ -68,8 +68,8 @@
           path: '/',
           name: '首页'
         }, {
-          path: '/login',
-          name: '新手入门'
+          path: '/topic/create',
+          name: '发布话题'
         }, {
           path: '/login',
           name: 'API'
