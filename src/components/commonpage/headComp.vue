@@ -10,7 +10,7 @@
         </div>
         <div class="leder">
             <ul>
-                <li v-for="nav in navs" class="leder-li">
+                <li v-for="(nav,index) in navs" class="leder-li">
                     <router-link :to="nav.path" class="leder-a" tag="a">{{nav.name}}</router-link>
                 </li>
             </ul>

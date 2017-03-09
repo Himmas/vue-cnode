@@ -14,7 +14,7 @@
                 <span>发布于 {{topics.create_at | getTime}}</span>
                 <span>最后编辑于 {{topics.last_reply_at | getTime}}</span>
                 <span>{{topics.visit_count}} 浏览</span>
-                <span>收藏</span>
+                <span @click="collectTopic">{{collects.name}}</span>
             </div>
         </div>
         <!--内容详情-->
@@ -54,6 +54,10 @@
   export default {
     data() {
       return {
+        collects:{
+            type: false,
+            name: '收藏'
+        },
         author:{},
         topics:{},
         replies:[],
@@ -78,6 +82,53 @@
          .catch((error)=>{
             console.log(error)
          })
+       },
+       collectTopic(){
+          if(this.collects.type){
+            this.deCollected()
+          }else{
+            this.collected()
+          }
+       },
+       collected(){
+            this.$http.post('/topic_collect/collect',{
+              accesstoken: 'bec977cb-1b56-4f52-bed8-8cf378f29213',
+              topic_id: this.$route.params.id
+            })
+            .then((res)=>{
+                this.collects = {
+                    type: true,
+                    name: '已收藏'
+                }
+                console.group("成功数据")
+                console.log(res.data)
+                console.groupEnd()
+             })
+            .catch((error)=>{
+                console.group("失败数据")
+                console.log(error)
+                console.groupEnd()
+          })
+       },
+       deCollected(){
+           this.$http.post('/topic_collect/de_collect',{
+              accesstoken: 'bec977cb-1b56-4f52-bed8-8cf378f29213',
+              topic_id: this.$route.params.id
+            })
+            .then((res)=>{
+                this.collects = {
+                    type: false,
+                    name: '收藏'
+                }
+                console.group("成功数据")
+                console.log(res.data)
+                console.groupEnd()
+             })
+            .catch((error)=>{
+                console.group("失败数据")
+                console.log(error)
+                console.groupEnd()
+          })
        },
        diplayBackTop(event){
           var evTop = event.target.scrollTop
@@ -111,6 +162,7 @@
 <style lang="less" scoped>
     .article-detail {
         width: 100%;
+        height: 100%;
         overflow-y: scroll;
         padding: 5px 10px;
         box-sizing: border-box;

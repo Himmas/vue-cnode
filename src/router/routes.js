@@ -36,6 +36,8 @@ const routes = [{
       } else {
         next()
       }
+    }else{
+      next()
     }
   }
 },

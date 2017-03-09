@@ -5,6 +5,7 @@ import App from './App'
 import router from './router/router.js'
 //import store from './store'
 
+
 import axios from 'axios'
 axios.defaults.baseURL = 'https://cnodejs.org/api/v1'
 axios.defaults.timeout = '10000'
@@ -19,9 +20,10 @@ Vue.filter('getTime',(val)=>{
   var year = parseInt(day/364)
   var hour = parseInt((totalTime - day*24*60*60)/(60*60))
   var minute = parseInt((totalTime - day*24*60*60 - hour*60*60)/60)
+  var second = parseInt(totalTime - day*24*60*60 - hour*60*60 - minute*60)
   if(day){
     if(year){
-      return `${yaer}年前`
+      return `${year}年前`
     }else if(month){
       return `${month}个月前`
     }else{
@@ -29,8 +31,10 @@ Vue.filter('getTime',(val)=>{
     }
   }else if(hour){
     return `${hour}小时前`
-  }else{
+  }else if(minute){
     return `${minute}分钟前`
+  }else{
+    return `${second}秒钟前`
   }
 })
 

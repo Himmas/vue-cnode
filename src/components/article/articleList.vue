@@ -14,6 +14,7 @@
                 <!--第二行-->
                 <router-link :to="{name:'topic',params:{id:article.id}}"
                              class="article-title"
+                             key="$route.params.id"
                              tag="div">
                     {{article.title}}
                 </router-link>
