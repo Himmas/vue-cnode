@@ -9,9 +9,9 @@
                     {{artlist.tab}}
 
                 </div>
-                <router-link :to="{name = 'topic',params:{id:artlist.id }}">
+                <!--<router-link :to="{name = 'topic',params:{id:artlist.id }}">-->
 
-                </router-link>
+                <!--</router-link>-->
             </li>
         </ul>
     </div>
@@ -25,6 +25,9 @@
   export default{
     data(){
       return {
+      	artlists:[
+          {"id":1}
+        ]
 
       }
     }
