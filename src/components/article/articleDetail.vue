@@ -11,10 +11,11 @@
                 <span class="title">{{topics.title}}</span>
             </div>
             <div class="footer">
-                <span>发布于 {{topics.create_at | getTime}}</span>
-                <span>最后编辑于 {{topics.last_reply_at | getTime}}</span>
-                <span>{{topics.visit_count}} 浏览</span>
-                <span @click="collectTopic">{{collects.name}}</span>
+                <span class="dot">发布于 {{topics.create_at | getTime}}</span>
+                <span class="dot">最后编辑于 {{topics.last_reply_at | getTime}}</span>
+                <span class="dot">{{topics.visit_count}} 浏览</span>
+                <span v-show="isDShow" class="iconfont icon-jiazai" style="font-size:10px"></span>
+                <span v-show="!isDShow" @click="collectTopic">{{isCollectTopic?'已收藏':'收藏'}}</span>
             </div>
         </div>
         <!--内容详情-->
@@ -50,19 +51,17 @@
 <script>
   import loadComp from '../commonpage/loading'
   import backTop from '../commonpage/backTop'
+  import { ACCESS_TOKEN } from '../../config'
 
   export default {
     data() {
       return {
-        collects:{
-            type: false,
-            name: '收藏'
-        },
         author:{},
         topics:{},
         replies:[],
         isDShow:true,
-        isDTopShow:false
+        isDTopShow:false,
+        isCollectTopic:false
       }
     },
     created(){
@@ -70,21 +69,24 @@
     },
     methods:{
       getArticleDetail(){
-         this.$http.get(`/topic/${this.$route.params.id}`)
+         this.$http.get(`/topic/${this.$route.params.id}`,{
+            params:{
+                accesstoken: ACCESS_TOKEN
+            }
+         })
          .then((data)=>{
-            this.$nextTick(()=>{
-              this.author = data.data.data.author
-              this.topics = data.data.data
-              this.replies = data.data.data.replies
-            })
-            this.isDShow = false
+             this.author = data.data.data.author
+             this.topics = data.data.data
+             this.replies = data.data.data.replies
+             this.isCollectTopic = data.data.data.is_collect
+             this.isDShow = false
          })
          .catch((error)=>{
             console.log(error)
          })
        },
        collectTopic(){
-          if(this.collects.type){
+          if(this.isCollectTopic){
             this.deCollected()
           }else{
             this.collected()
@@ -92,15 +94,12 @@
        },
        collected(){
             this.$http.post('/topic_collect/collect',{
-              accesstoken: 'bec977cb-1b56-4f52-bed8-8cf378f29213',
+              accesstoken: ACCESS_TOKEN,
               topic_id: this.$route.params.id
             })
             .then((res)=>{
-                this.collects = {
-                    type: true,
-                    name: '已收藏'
-                }
-                console.group("成功数据")
+                this.isCollectTopic = true
+                console.group("收藏成功数据")
                 console.log(res.data)
                 console.groupEnd()
              })
@@ -112,15 +111,12 @@
        },
        deCollected(){
            this.$http.post('/topic_collect/de_collect',{
-              accesstoken: 'bec977cb-1b56-4f52-bed8-8cf378f29213',
+              accesstoken: ACCESS_TOKEN,
               topic_id: this.$route.params.id
             })
             .then((res)=>{
-                this.collects = {
-                    type: false,
-                    name: '收藏'
-                }
-                console.group("成功数据")
+                this.isCollectTopic = false
+                console.group("取消收藏成功数据")
                 console.log(res.data)
                 console.groupEnd()
              })
@@ -152,11 +148,6 @@
         backTop
     }
   }
-
-
-
-
-
 </script>
 
 <style lang="less" scoped>
@@ -207,7 +198,7 @@
                 span {
                     margin-right: 15px;
                     position: relative;
-                    &:not(:last-child):after {
+                    &.dot:after {
                         position: absolute;
                         top: 6px;
                         right: -10px;

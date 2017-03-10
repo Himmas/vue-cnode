@@ -86,7 +86,11 @@
       }
     },
     created(){
-
+        if(localStorage.getItem('username')){
+            this.navs[this.navs.length-1].name="退出"
+        }else{
+            this.navs[this.navs.length-1].name="登录"
+        }
     },
     methods: {
     },

@@ -4,9 +4,9 @@
             <li v-for="(article,index) in articles" class="art-li">
                 <!--第一行-->
                 <div class="list-first-line">
-                    <div class="user-avatar">
+                    <router-link :to="{name:'user',params:{id:article.author.loginname}}" class="user-avatar">
                         <img :src="article.author.avatar_url" class="headpic"/>
-                    </div>
+                    </router-link>
                     <div class="create-time">
                         {{article.last_reply_at | getTime }}
                     </div>
@@ -14,7 +14,6 @@
                 <!--第二行-->
                 <router-link :to="{name:'topic',params:{id:article.id}}"
                              class="article-title"
-                             key="$route.params.id"
                              tag="div">
                     {{article.title}}
                 </router-link>
