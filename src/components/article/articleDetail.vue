@@ -36,7 +36,7 @@
                     <div class="floor">{{index+1}}楼</div>
                     <div class="time">{{reply.create_at | getTime}}</div>
                     <div class="icon">
-                        <span class="iconfont icon-zan-copy"></span>
+                        <span @click="replyUps(reply.id,$event)" class="iconfont icon-zan_light"></span>
                         <span>{{reply.ups.length}}</span>
                         <span class="iconfont icon-huifu1"></span>
                     </div>
@@ -44,6 +44,11 @@
                 <div class="content" v-html="reply.content"></div>
             </div>
         </div>
+        <!--评论-->
+        <form class="article-comment" @submit.prevent="createReplies">
+            <textarea v-model = "createReplyContent" class="comment-content" placeholder="输入回复内容"></textarea>
+            <input type="submit" :disabled="!createReplyContent.length" :class="{active:createReplyContent.length}" class="btn" value="提交">
+        </form>
         <back-top :isBackTopShow="isDTopShow" @backTop="detailTop"></back-top>
         <load-comp :loadShow="isDShow"></load-comp>
     </div>
@@ -59,6 +64,7 @@
         author:{},
         topics:{},
         replies:[],
+        createReplyContent:'',
         isDShow:true,
         isDTopShow:false,
         isCollectTopic:false
@@ -66,6 +72,7 @@
     },
     created(){
       this.getArticleDetail()
+      this.isFill()
     },
     methods:{
       getArticleDetail(){
@@ -125,6 +132,47 @@
                 console.log(error)
                 console.groupEnd()
           })
+       },
+       createReplies(){
+          this.$http.post(`/topic/${this.$route.params.id}/replies`,{
+               accesstoken: ACCESS_TOKEN,
+               content: this.createReplyContent
+          })
+          .then((res)=>{
+              this.createReplyContent = ''
+              console.log(res.data)
+              this.getArticleDetail()
+              this.$refs.articleDetail.scrollTop =  this.$refs.articleDetail.scrollHeight
+          })
+          .catch((error)=>{
+              console.log(error)
+          })
+       },
+       replyUps(id,event){
+          this.$http.post(`/reply/${id}/ups`,{
+              accesstoken: ACCESS_TOKEN
+          })
+          .then((res) => {
+             if(res.data.action == 'up'){
+                event.target.classList.remove('icon-zan_light')
+                event.target.classList.add('icon-zan_fill')
+             }else if(res.data.action == 'down'){
+                event.target.classList.remove('icon-zan_fill')
+                event.target.classList.add('icon-zan_light')
+             }
+             this.getArticleDetail()
+             console.log(res.data)
+          })
+          .catch((error)=>{
+             console.log(error)
+          })
+       },
+       isFill(arr){
+          if(arr){
+            arr.some((data)=>{
+              return data == localStorage.getItem('userid')
+            })
+          }
        },
        diplayBackTop(event){
           var evTop = event.target.scrollTop
@@ -219,6 +267,8 @@
         .article-reply {
             border-top: 1px solid #999;
             width: 100%;
+            padding-bottom: 32px;
+            box-sizing: border-box;
             span.reply-count {
                 display: block;
                 width: 100%;
@@ -293,5 +343,40 @@
             }
 
         }
+      .article-comment{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 32px;
+        margin-left: -10px;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: space-between;
+        textarea.comment-content{
+          flex-basis: 75%;
+          height: 32px;
+          padding: 5px;
+          box-sizing: border-box;
+          border: 1px solid gainsboro;
+          border-radius: 0;
+          -webkit-tap-highlight-color: transparent;
+          box-shadow: none;
+          outline: none;
+        }
+        input.btn{
+          height: 32px;
+          flex-basis: 25%;
+          border: none;
+          background: rgba(29,146,237,.5);
+          color: #fff;
+          border-radius: 0;
+          -webkit-tap-highlight-color: transparent;
+          &.active{
+            background: #1d92ed;
+            color: #fff;
+          }
+        }
+      }
     }
 </style>

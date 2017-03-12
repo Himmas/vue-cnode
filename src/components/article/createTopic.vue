@@ -65,6 +65,7 @@
                         flex-grow: 1;
                         flex-basis: 70%;
                         color: #666;
+                         -webkit-tap-highlight-color: transparent;
                     }
                 }
                 &.form-btn{
@@ -74,12 +75,13 @@
                         -webkit-tap-highlight-color: transparent;
                         background: transparent;
                         color:rgba(30, 144, 255, .2);
+                        -webkit-tap-highlight-color: transparent;
                         &.active{
                             color: dodgerblue;
                         }
                     }
                 }
-                
+
             }
         }
         .form-title{
@@ -101,6 +103,7 @@
                 flex-grow: 1;
                 flex-basis: 79%;
                 color: #666;
+                -webkit-tap-highlight-color: transparent;
             }
         }
         .form-content{
@@ -112,6 +115,7 @@
                 min-height: 100px;
                 padding: 5px 10px;
                 box-sizing: border-box;
+                -webkit-tap-highlight-color: transparent;
             }
         }
     }

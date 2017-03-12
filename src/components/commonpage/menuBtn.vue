@@ -93,7 +93,7 @@
 					}
 					&.inner-reload{
 						transform: translate3d(50px,0,0);
-						transition-delay: 0;
+						transition-delay: 0s;
 					}
 				}
 			}

@@ -20,7 +20,7 @@
 <style lang="less">
     .top { //class="top"的样式
         position: fixed;
-        top: 0px;
+        top: 0;
         width: 100%;
         height: 20%;
         overflow: hidden;
@@ -48,7 +48,7 @@
         .leder {
             .leder-li {
                 display: inline-block;
-                padding: 20px 3% 20px 3%;
+                padding: 10px 3%;
                 &:hover {
                     opacity: 0.3;
                 }
@@ -71,31 +71,10 @@
           path: '/topic/create',
           name: '发布话题'
         }, {
-          path: '/login',
-          name: 'API'
-        }, {
-          path: '/login',
-          name: '关于'
-        }, {
-          path: '/login',
-          name: '注册'
-        }, {
-          path: '/login',
-          name: '登录'
+          path: '/my/message',
+          name: '消息通知'
         }]
       }
-    },
-    created(){
-        if(localStorage.getItem('username')){
-            this.navs[this.navs.length-1].name="退出"
-        }else{
-            this.navs[this.navs.length-1].name="登录"
-        }
-    },
-    methods: {
-    },
-    components: {
-
     }
   }
 

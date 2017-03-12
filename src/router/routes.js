@@ -42,10 +42,10 @@ const routes = [{
   }
 },
   {
-  path: '/login',
-  name: 'login',
+  path: '/my/:id',
+  name: 'message',
   component: function(resolve){
-    require(['../components/login/login'],resolve)
+    require(['../components/messagepage/message'],resolve)
   }
 },{
     path: '/user/:id',

@@ -2,7 +2,6 @@
   <div class="login">
       <div class="login-code">
           <figure>
-            <img src="../../assets/img/login.png">
             <p>手机扫码登录</p>
           </figure>
 

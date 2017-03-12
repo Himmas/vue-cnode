@@ -161,7 +161,7 @@
                         }
                     }
                     .create-time{
-                        flex-flow: 1;
+                        flex-grow: 1;
                         text-align: right;
                         margin-right: 10px;
                         color:#999;
