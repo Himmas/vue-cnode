@@ -1,21 +1,26 @@
 <template>
-    <div @touchstart="tstart"
-         @touchmove="tmove"
-         @touchend="tend"
-         class="my-message">
-        <router-link class="message-panl iconfont" :to="{name:routename}">
+    <div class="my-message">
+        <div class="message-panl iconfont"
+             :style="{transition:speed}"
+             @touchstart="tstart"
+             @touchmove="tmove"
+             @touchend="tend"
+        >
             {{readmsg}}
-            <slot name="label" class="label" v-if="count != 0"></slot>
-        </router-link>
+            <slot name="label" v-if="count != 0"></slot>
+        </div>
+        <div v-if="routename == 'unreadmessage'" class="mark-message" :style="{width:-deltaN+'px',transition:speed}">
+            标记已读
+        </div>
     </div>
 </template>
 <script>
     import { ACCESS_TOKEN } from '../../config.js'
+
     export default{
         data(){
             return{
-                count:0,
-                n:0
+                count:0
             }
         },
         props:{
@@ -26,6 +31,14 @@
             readmsg:{
                 type:String,
                 default:''
+            },
+            deltaN:{
+              type:Number,
+              default:0
+            },
+            speed:{
+              type:String,
+              default:''
             }
         },
         created(){
@@ -41,53 +54,61 @@
                     console.log(error)
                 })
            },
+
            tstart(){
-                this.$emit('tstart')
-            },
-            tmove(){
-                this.$emit('tmove')
-                //console.log(this.n)
-            },
-            tend(){
-                this.$emit('tend')
-            }
+             this.$emit('tstart')
+           },
+           tmove(){
+             this.$emit('tmove')
+           },
+           tend(){
+             this.$emit('tend')
+           }
         }
     }
 </script>
 <style lang="less">
     .my-message {
-        width: 100%;
-        height: 32px;
+      width: 100%;
+      height: 32px;
+      line-height: 32px;
+      text-align: left;
+      padding-left: 10px;
+      box-sizing: border-box;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around;
+      align-items: center;
+      border-bottom: 1px solid gainsboro;
+      .message-panl {
+          flex-basis: 100%;
+          font-size: 12px;
+          color: #666;
+          position: relative;
+          transform: translateX(0);
+          &:after {
+              float: right;
+              padding-right: 10px;
+              content: "\e603"
+          }
+          .label{
+              position: absolute;
+              top: 6px;
+              left:48px;
+              display: block;
+              width: 5px;
+              height: 5px;
+              border-radius: 50%;
+              background: red;
+          }
+      }
+      .mark-message{
+        height: inherit;
+        background: goldenrod;
+        color: #fff;
         line-height: 32px;
-        text-align: left;
-        padding-left: 10px;
-        box-sizing: border-box;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-around;
-        align-items: center;
-        border-bottom: 1px solid gainsboro;
-        .message-panl {
-            flex-basis: 100%;
-            font-size: 12px;
-            color: #666;
-            position: relative;
-            &:after {
-                float: right;
-                padding-right: 10px;
-                content: "\e603"
-            }
-            span{
-                position: absolute;
-                top: 6px;
-                left:48px;
-                display: block;
-                width: 5px;
-                height: 5px;
-                border-radius: 50%;
-                background: red;
-            }
-        }
+        text-align: center;
+      }
     }
 </style>
 
