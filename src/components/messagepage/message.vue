@@ -71,7 +71,7 @@
               this.fdeltaN = -this.delta.x
               if(-this.delta.x >= this.maxDelta) {
                  this.fspeed = 'all .2s ease-in-out'
-                 this.fdeltaN = -this.maxDelta-10
+                  this.fdeltaN = -this.maxDelta-10
               }
             }else{
               return;
