@@ -63,7 +63,7 @@ const routes = [{
     children:[{
       path:'collections',
       name:'collections',
-      component:require('../components/user/usercollect.vue')
+      component:require('../components/user/userInfo/userCollect.vue')
     }]
   }]
 

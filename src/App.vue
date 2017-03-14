@@ -40,7 +40,7 @@
     height: 80%;
     background: #fff;
     width: 100%;
-    overflow:hidden;
+    overflow-x: hidden;
   }
   .fade-opac-enter-active,
   .fade-opac-leave-active{

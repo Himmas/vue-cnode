@@ -32,12 +32,16 @@
     </div>
 </template>
 <style rel="stylesheet/less" lang="less">
+    .create-topic-div{
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+    }
     .create-form{
         width: 100%;
         height: 100%;
         padding: 0;
         margin: 0;
-        overflow-y: auto;
         .form-first-line{
             width: 100%;
             padding: 5px 10px;

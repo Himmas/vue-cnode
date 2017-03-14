@@ -1,10 +1,10 @@
 <template>
-   <div>1111</div>
+   
 </template>
 <style rel="stylesheet/less" lang="less">
     
 </style>
-<script type="text/ecmascript-6">
+<script>
     
     export default{
         data(){

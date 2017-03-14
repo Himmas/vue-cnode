@@ -1,6 +1,7 @@
 <template>
     <div class="my-message">
         <div class="message-panl iconfont"
+             :data-name="routename"
              :style="{transition:speed}"
              @touchstart="tstart"
              @touchmove="tmove"
@@ -9,9 +10,7 @@
             {{readmsg}}
             <slot name="label" v-if="count != 0"></slot>
         </div>
-        <div v-if="routename == 'unreadmessage'" class="mark-message" :style="{width:-deltaN+'px',transition:speed}">
-            标记已读
-        </div>
+        <slot name="mark" v-if="routename == 'unreadmessage'"></slot>
     </div>
 </template>
 <script>
@@ -31,10 +30,6 @@
             readmsg:{
                 type:String,
                 default:''
-            },
-            deltaN:{
-              type:Number,
-              default:0
             },
             speed:{
               type:String,
